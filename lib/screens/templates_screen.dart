@@ -1,17 +1,19 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutteroverclone/components/my_app_bar.dart';
 import 'package:flutteroverclone/models/category.dart';
 import 'package:flutteroverclone/models/template.dart';
 import 'package:flutteroverclone/constants/app_colors.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final List<Category> _categories = [
-  Category(title: "Pride", color: Color(0xFFD5BEEA)),
-  Category(title: "Instagram\nStory", color: Color(0xFF6FDBC9)),
-  Category(title: "Facebook\nPost", color: Color(0xFF5D83C7)),
-  Category(title: "Pinterest", color: Color(0xFFFF5060)),
-  Category(title: "Flyer/Poster", color: Color(0xFFD499E2)),
-  Category(title: "Logo", color: Color(0xFF9692F7))
+  Category(title: "Pride", color: Color(0xFFD5BEEA), icon: FaIcon(FontAwesomeIcons.rainbow, color: Colors.white)),
+  Category(title: "Instagram\nStory", color: Color(0xFF6FDBC9), icon: FaIcon(FontAwesomeIcons.instagram, color: Colors.white)),
+  Category(title: "Facebook\nPost", color: Color(0xFF5D83C7), icon: FaIcon(FontAwesomeIcons.facebookSquare, color: Colors.white)),
+  Category(title: "Pinterest", color: Color(0xFFFF5060), icon: FaIcon(FontAwesomeIcons.pinterest, color: Colors.white)),
+  Category(title: "Flyer/Poster", color: Color(0xFFD499E2), icon: FaIcon(FontAwesomeIcons.fileAlt, color: Colors.white)),
+  Category(title: "Logo", color: Color(0xFF9692F7), icon: FaIcon(FontAwesomeIcons.solidStar, color: Colors.white)),
 ];
 
 final List<Template> _templates = [
@@ -21,31 +23,31 @@ final List<Template> _templates = [
       isFree: true),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://images.assetsdelivery.com/compings_v2/shotsstudio/shotsstudio1506/shotsstudio150600050.jpg",
       isFree: true),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://image.freepik.com/free-vector/colorful-abstract-wallpaper-design_23-2148467625.jpg",
       isFree: false),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://cellularnews.com/wp-content/uploads/2020/03/Abstract-3-325x485.jpg",
       isFree: false),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://cdn.dribbble.com/users/20956/screenshots/6644524/attachments/1420193/psych-abstract-wallpaper-tablet-2662x2662.png",
       isFree: true),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://wallpaperaccess.com/full/357699.jpg",
       isFree: false),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://png.pngtree.com/thumb_back/fw800/background/20190627/pngtree-elegant-abstract-wallpaper-design-image_262927.jpg",
       isFree: true),
   Template(
       image:
-          "https://besthqwallpapers.com/Uploads/16-9-2019/104231/thumb2-dark-abstract-background-neon-lines-dark-lines-background-creative-abstraction-geometric-backgrounds.jpg",
+          "https://images.hdqwalls.com/wallpapers/twitz-color-abstract-se.jpg",
       isFree: false),
 ];
 
@@ -66,6 +68,18 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
       appBar: MyAppBar(title: "Templates"),
       body: Column(
         children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                color: Color(0xFFF3F3F3),
+                borderRadius: BorderRadius.circular(10)),
+            margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: "Search",
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none),
+            ),
+          ),
           Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
@@ -131,11 +145,11 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
       child: ClipRRect(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.grey[300],
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(template.image),
+              image: CachedNetworkImageProvider(template.image),
             ),
           ),
           child: Stack(
