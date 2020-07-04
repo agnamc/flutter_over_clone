@@ -3,6 +3,7 @@ import 'package:flutteroverclone/constants/app_colors.dart';
 import 'package:flutteroverclone/screens/home/projects_page.dart';
 import 'package:flutteroverclone/screens/home/templates_screen.dart';
 import 'package:flutteroverclone/screens/workspace/create_project_screen.dart';
+import 'package:flutteroverclone/transition/reveal_router.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,6 +26,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    var screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
@@ -47,7 +51,18 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateProjectScreen())),
+        onPressed: () {
+          /*Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => CreateProjectScreen()));*/
+          Navigator.push(
+            context,
+            RevealRoute(
+              page: CreateProjectScreen(),
+              maxRadius: screenHeight + 100,
+              centerAlignment: Alignment.bottomCenter,
+            ),
+          );
+        },
         backgroundColor: myYellow,
         child: Icon(
           Icons.add,

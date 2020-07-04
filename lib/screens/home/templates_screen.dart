@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutteroverclone/components/my_app_bar.dart';
@@ -86,6 +85,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
           return <Widget>[
             SliverAppBar(
               flexibleSpace: MyAppBar(title: "Templates"),
+              pinned: true,
               expandedHeight: 120,
               bottom: PreferredSize(
                 child: Container(
@@ -176,7 +176,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: CachedNetworkImageProvider(template.image),
+              image: NetworkImage(template.image),
             ),
           ),
           child: Stack(

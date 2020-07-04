@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ProjectSize {
-
-  final double width;
-  final double height;
+  final int paperWidth;
+  final int paperHeight;
+  final double thumbHeight;
   final Widget content;
   final String name;
 
   ProjectSize({
-    this.width,
-    this.height,
+    this.paperWidth = 0,
+    this.paperHeight = 0,
+    this.thumbHeight,
     this.content,
     this.name,
   });
