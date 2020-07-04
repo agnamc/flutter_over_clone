@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutteroverclone/screens/home_page.dart';
+import 'package:flutteroverclone/screens/home/home_page.dart';
 import 'package:flutteroverclone/workspace_screen.dart';
 
 void main() {

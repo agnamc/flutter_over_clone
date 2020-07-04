@@ -79,7 +79,6 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var _tabs = ["Tab 1", "Tab 2"];
 
     return Scaffold(
       body: NestedScrollView(
@@ -87,6 +86,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
           return <Widget>[
             SliverAppBar(
               flexibleSpace: MyAppBar(title: "Templates"),
+              expandedHeight: 120,
               bottom: PreferredSize(
                 child: Container(
                   decoration: BoxDecoration(
@@ -105,36 +105,31 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
             ),
           ];
         },
-        body: SafeArea(
-          child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16.0, horizontal: 8.0),
-                  child: Container(
-                    height: 200,
-                    child: ListView.builder(
-                      itemCount: _categories.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) =>
-                          categoryItem(category: _categories[index]),
-                    ),
+                Container(
+                  margin: EdgeInsets.only(top: 8.0),
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: _categories.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) =>
+                        categoryItem(category: _categories[index]),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: StaggeredGridView.countBuilder(
-                    physics: ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    crossAxisCount: 4,
-                    itemCount: _templates.length,
-                    itemBuilder: (context, index) =>
-                        templateItem(template: _templates[index]),
-                    staggeredTileBuilder: (index) =>
-                        StaggeredTile.count(2, (index % 3) + 1),
-                  ),
+                StaggeredGridView.countBuilder(
+                  physics: ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  crossAxisCount: 4,
+                  itemCount: _templates.length,
+                  itemBuilder: (context, index) =>
+                      templateItem(template: _templates[index]),
+                  staggeredTileBuilder: (index) =>
+                      StaggeredTile.count(2, (index % 3) + 1),
                 )
               ],
             ),
@@ -173,7 +168,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
 
   Widget templateItem({Template template}) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16.0),
       child: ClipRRect(
         child: Container(
           decoration: BoxDecoration(

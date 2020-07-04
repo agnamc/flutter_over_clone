@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutteroverclone/screens/projects_page.dart';
-import 'package:flutteroverclone/screens/templates_screen.dart';
 import 'package:flutteroverclone/constants/app_colors.dart';
+import 'package:flutteroverclone/screens/home/projects_page.dart';
+import 'package:flutteroverclone/screens/home/templates_screen.dart';
+import 'package:flutteroverclone/screens/workspace/create_project_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  _HomePaeState createState() => _HomePaeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomePaeState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
 
   List<Widget> screens;
 
   @override
   void initState() {
-    screens = [TemplatesScreen(), ProjectsScreen()];
+    screens = [
+      TemplatesScreen(),
+      ProjectsScreen(),
+    ];
     super.initState();
   }
 
@@ -43,6 +47,7 @@ class _HomePaeState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateProjectScreen())),
         backgroundColor: myYellow,
         child: Icon(
           Icons.add,
