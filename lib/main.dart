@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutteroverclone/screens/home/home_page.dart';
-import 'package:flutteroverclone/workspace_screen.dart';
+import 'package:flutteroverclone/screens/workspace/workspace_screen.dart';
 
 void main() {
   runApp(MyApp());

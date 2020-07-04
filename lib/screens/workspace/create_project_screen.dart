@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutteroverclone/constants/app_colors.dart';
 import 'package:flutteroverclone/models/project_size.dart';
+import 'package:flutteroverclone/screens/workspace/workspace_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math' as math;
 
@@ -62,15 +63,18 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF161616),
+      backgroundColor: myDarkGray,
       appBar: AppBar(
         backgroundColor: Color(0xFF222222),
         title: Text("Project Size", style: TextStyle(color: myGray)),
         iconTheme: IconThemeData(color: myGray),
         actions: <Widget>[
-          Icon(
-            Icons.check,
-            size: 26,
+          GestureDetector(
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkspaceScreen())),
+            child: Icon(
+              Icons.check,
+              size: 26,
+            ),
           ),
           SizedBox(
             width: 10,
