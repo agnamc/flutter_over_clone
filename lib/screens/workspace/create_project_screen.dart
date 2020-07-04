@@ -7,27 +7,54 @@ import 'dart:math' as math;
 
 final List<ProjectSize> projectSizes = [
   ProjectSize(
-      height: 120.0,
-      content: FaIcon(FontAwesomeIcons.instagram, color: myGray)),
+    height: 120.0,
+    content: FaIcon(
+      FontAwesomeIcons.instagram,
+      color: myGray,
+    ),
+    name: "Square",
+  ),
   ProjectSize(
-      height: 150.0,
-      content: FaIcon(FontAwesomeIcons.instagram, color: myGray)),
+    height: 150.0,
+    content: FaIcon(FontAwesomeIcons.instagram, color: myGray),
+    name: "Story",
+  ),
   ProjectSize(
-      height: 90.0, content: FaIcon(FontAwesomeIcons.instagram, color: myGray)),
+    height: 90.0,
+    content: FaIcon(FontAwesomeIcons.instagram, color: myGray),
+    name: "Landscape",
+  ),
   ProjectSize(
-      height: 150.0, content: FaIcon(FontAwesomeIcons.facebook, color: myGray)),
+    height: 150.0,
+    content: FaIcon(FontAwesomeIcons.facebook, color: myGray),
+    name: "Story",
+  ),
   ProjectSize(
-      height: 120.0, content: FaIcon(FontAwesomeIcons.twitter, color: myGray)),
+    height: 120.0,
+    content: FaIcon(FontAwesomeIcons.twitter, color: myGray),
+    name: "Post",
+  ),
   ProjectSize(
-      height: 90.0, content: FaIcon(FontAwesomeIcons.pinterest, color: myGray)),
+    height: 90.0,
+    content: Text(
+      "3:4",
+      style: TextStyle(color: myGray),
+    ),
+    name: "Portrait",
+  ),
   ProjectSize(
-      height: 120.0,
-      content: Text(
-        "1:1",
-        style: TextStyle(color: myGray),
-      )),
+    height: 120.0,
+    content: Text(
+      "1:1",
+      style: TextStyle(color: myGray),
+    ),
+    name: "Square",
+  ),
   ProjectSize(
-      height: 60.0, content: FaIcon(FontAwesomeIcons.image, color: myGray)),
+    height: 60.0,
+    content: FaIcon(FontAwesomeIcons.image, color: myGray),
+    name: "Desktop Wallpaper",
+  ),
 ];
 
 class CreateProjectScreen extends StatefulWidget {
@@ -36,7 +63,6 @@ class CreateProjectScreen extends StatefulWidget {
 }
 
 class _CreateProjectScreenState extends State<CreateProjectScreen> {
-  
   PageController _pageSizeController;
   int _currentSize;
 
@@ -49,14 +75,13 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
     _pageSizeController =
         PageController(initialPage: _currentSize, viewportFraction: 0.32);
     _pageSizeController.addListener(() {
-
-      var value = (_pageSizeController.page -  _currentSize).abs().clamp(0.0, 1.0);
+      var value =
+          (_pageSizeController.page - _currentSize).abs().clamp(0.0, 1.0);
       if (value == 1) {
         setState(() {
           _currentSize = _pageSizeController.page.ceil();
         });
       }
-
     });
   }
 
@@ -66,11 +91,18 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
       backgroundColor: myDarkGray,
       appBar: AppBar(
         backgroundColor: Color(0xFF222222),
-        title: Text("Project Size", style: TextStyle(color: myGray)),
+        title: Text(
+          "Project Size",
+          style: TextStyle(color: myGray),
+        ),
         iconTheme: IconThemeData(color: myGray),
         actions: <Widget>[
           GestureDetector(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkspaceScreen())),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => WorkspaceScreen(),
+              ),
+            ),
             child: Icon(
               Icons.check,
               size: 26,
@@ -93,16 +125,24 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                     children: <Widget>[
                       Container(
                         padding: EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 16.0),
+                          vertical: 8.0,
+                          horizontal: 16.0,
+                        ),
                         decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Color(0xFF242424), width: 1),
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child: Text("1080 x 1920",
-                            style: TextStyle(
-                                color: myGray,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16)),
+                          border: Border.all(
+                            color: Color(0xFF242424),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Text(
+                          "1080 x 1920",
+                          style: TextStyle(
+                            color: myGray,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                       ),
                       SizedBox(width: 20),
                       Icon(Icons.replay, color: myGray)
@@ -113,13 +153,14 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                   child: Center(
                     child: Container(
                       width: 200,
-                      height: 200,
+                      height: 1000,
                       color: Colors.white,
                     ),
                   ),
                 ),
+                SizedBox(height: 10),
                 Text(
-                  "Story",
+                  projectSizes[_currentSize].name,
                   style: TextStyle(
                     color: myGray,
                     fontSize: 16,
@@ -129,8 +170,8 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
             ),
           ),
           Container(
-            height: 200,
-            margin: EdgeInsets.symmetric(vertical: 16.0),
+            height: 150,
+            margin: EdgeInsets.symmetric(vertical: 12.0),
             child: PageView.builder(
                 controller: _pageSizeController,
                 itemCount: projectSizes.length,
@@ -141,11 +182,12 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                     child: Container(
                       height: item.height,
                       decoration: BoxDecoration(
-                          border: (_currentSize == index)
-                              ? Border.all(color: myYellow, width: 2)
-                              : null,
-                          color: Color(0xFF282828),
-                          borderRadius: BorderRadius.circular(10.0)),
+                        border: (_currentSize == index)
+                            ? Border.all(color: myYellow, width: 2)
+                            : null,
+                        color: Color(0xFF282828),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       margin: EdgeInsets.symmetric(horizontal: 4.0),
                       alignment: Alignment.center,
                       child: item.content,
