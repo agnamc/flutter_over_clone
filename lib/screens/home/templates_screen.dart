@@ -85,7 +85,6 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
           return <Widget>[
             SliverAppBar(
               flexibleSpace: MyAppBar(title: "Templates"),
-              pinned: true,
               expandedHeight: 120,
               bottom: PreferredSize(
                 child: Container(

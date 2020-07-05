@@ -164,9 +164,9 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                   ),
                 ),
                 Expanded(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
                       child: AnimatedContainer(
                         decoration: BoxDecoration(
                             image: DecorationImage(
